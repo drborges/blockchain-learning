@@ -7,10 +7,10 @@ import (
 	"testing"
 )
 
-func TestOutpointBtcEncodeDecode(t *testing.T) {
-	expected := blockchain.Outpoint{
-		Hash:  [32]byte{'1', '2', '3'},
-		Index: 1,
+func TestTxOutBtcEncodeDecode(t *testing.T) {
+	expected := blockchain.TxOut{
+		Value:    123,
+		PKScript: []byte("pkscript"),
 	}
 
 	buf := bytes.NewBuffer(make([]byte, 0, expected.SerializedSize()))
@@ -18,7 +18,7 @@ func TestOutpointBtcEncodeDecode(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	var actual blockchain.Outpoint
+	var actual blockchain.TxOut
 	if err := actual.BtcDecode(buf); err != nil {
 		t.Fatal(err)
 	}

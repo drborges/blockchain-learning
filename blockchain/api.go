@@ -9,3 +9,9 @@ type BtcEncoder interface {
 type BtcDecoder interface {
 	BtcDecode(r io.Reader) error
 }
+
+type Serializable interface {
+	BtcEncoder
+	BtcDecoder
+	SerializedSize() int
+}

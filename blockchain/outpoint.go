@@ -1,8 +1,8 @@
 package blockchain
 
 import (
-	"io"
 	"encoding/binary"
+	"io"
 )
 
 // See contract at: https://bitcoin.org/en/developer-reference#outpoint

@@ -2,9 +2,9 @@ package varint
 
 import (
 	"encoding/binary"
+	"errors"
 	"io"
 	"math"
-	"errors"
 )
 
 // CODE EXTRACTED AND ADAPTED FROM:

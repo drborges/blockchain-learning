@@ -7,14 +7,14 @@ import (
 	"testing"
 )
 
-func TestTxInBtcEncode(t *testing.T) {
+func TestTxInBtcEncodeDecode(t *testing.T) {
 	expected := blockchain.TxIn{
 		PreviousTxOut: blockchain.Outpoint{
 			Hash:  [32]byte{'1', '2', '3'},
 			Index: 2,
 		},
 		ScriptSignature: []byte("abcd"),
-		Sequence:  2,
+		Sequence:        2,
 	}
 
 	buf := bytes.NewBuffer(make([]byte, 0, expected.SerializedSize()))

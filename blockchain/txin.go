@@ -24,10 +24,10 @@ func (tx *TxIn) BtcEncode(w io.Writer) error {
 		return err
 	}
 
-	var buf [4]byte
-	binary.LittleEndian.PutUint32(buf[:], tx.Sequence)
+	var seq [4]byte
+	binary.LittleEndian.PutUint32(seq[:], tx.Sequence)
 
-	if _, err := w.Write(buf[:]); err != nil {
+	if _, err := w.Write(seq[:]); err != nil {
 		return err
 	}
 
@@ -41,17 +41,17 @@ func (tx *TxIn) BtcDecode(r io.Reader) error {
 		return err
 	}
 
-	buf := make([]byte, scriptLen)
-	if _, err := r.Read(buf); err != nil {
+	sig := make([]byte, scriptLen)
+	if _, err := r.Read(sig); err != nil {
 		return err
 	}
-	tx.ScriptSignature = buf
+	tx.ScriptSignature = sig
 
-	var seqBuf [4]byte
-	if _, err := r.Read(seqBuf[:]); err != nil {
+	var seq [4]byte
+	if _, err := r.Read(seq[:]); err != nil {
 		return err
 	}
-	tx.Sequence = binary.LittleEndian.Uint32(seqBuf[:])
+	tx.Sequence = binary.LittleEndian.Uint32(seq[:])
 	return nil
 }
 
